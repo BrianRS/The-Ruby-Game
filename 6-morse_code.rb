@@ -17,15 +17,18 @@ def morse_to_eng(morse)
 			space_count = 0
 			state = state[2]
 		elsif c == ' '
-			eng << state[1]
-			state = [dot,"",dash]
 			space_count += 1
-			if space_count == 3
-				eng << " "
-				space_count = 0
+			if space_count > 1
+				if space_count == 3
+					eng += " "
+					space_count = 0
+				end
+			else
+				eng += state[1]
+				state = [dot,"",dash]
 			end
 		end
 	end
-	eng << state[1]
+	eng += state[1]
 	eng
 end
